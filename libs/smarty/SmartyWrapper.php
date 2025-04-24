@@ -1,21 +1,26 @@
 <?php
+
 namespace Libs\Smarty;
 
 use Framework\Config;
 
+class SmartyWrapper
+{
+  private static ?\Smarty $smarty = null;
 
-class SmartyWrapper {
-  public static function getSmarty() {
-    // Initialize smarty
-    require_once 'Smarty.class.php';
+  public static function getSmarty(): \Smarty
+  {
+    if (self::$smarty === null) {
+      require_once 'Smarty.class.php';
 
-    $config = Config::getInstance();
-    $smarty = new \Smarty();
-    $smarty->setTemplateDir($config->getConfig('smarty_template_dir'));
-    $smarty->setCompileDir($config->getConfig('smarty_compile_dir'));
-    $smarty->setCacheDir($config->getConfig('smarty_cache_dir'));
-    $smarty->setConfigDir($config->getConfig('smarty_configs_dir'));
+      $config = Config::getInstance();
+      self::$smarty = new \Smarty();
+      self::$smarty->setTemplateDir($_SERVER['DOCUMENT_ROOT'] . $config->getConfig('smarty_template_dir'));
+      self::$smarty->setCompileDir($_SERVER['DOCUMENT_ROOT'] . $config->getConfig('smarty_compile_dir'));
+      self::$smarty->setCacheDir($_SERVER['DOCUMENT_ROOT'] . $config->getConfig('smarty_cache_dir'));
+      self::$smarty->setConfigDir($_SERVER['DOCUMENT_ROOT'] . $config->getConfig('smarty_configs_dir'));
+    }
 
-    return $smarty;
+    return self::$smarty;
   }
 }

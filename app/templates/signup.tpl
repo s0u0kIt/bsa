@@ -43,7 +43,7 @@
 		</form>
 		<p class="text-sm text-center mt-4">
 			Vous avez déjà un compte?
-			<a href="/signin" class="text-indigo-400 hover:underline">Se connecter</a>
+			<a href="/app/connexion" class="text-indigo-400 hover:underline">Se connecter</a>
 		</p>
 	</div>
 </body>

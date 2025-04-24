@@ -190,6 +190,9 @@ class Request
         return filter_var($value, FILTER_VALIDATE_EMAIL, FILTER_NULL_ON_FAILURE);
       case 'ip':
         return filter_var($value, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE);
+      case 'd':
+        $date = date_parse($value);
+        return (checkdate($date['month'], $date['day'], $date['year'])) ? $value : false;
       default:
         throw new ErrorException("Unsupported type '{$type}' for key '{$key}'.");
     }

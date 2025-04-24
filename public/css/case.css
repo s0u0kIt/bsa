@@ -1,0 +1,9 @@
+#dataResidence:has(option:checked[value="A la rue"]) {
+  border-color: red;
+}
+#dataResidence:has(option:checked[value="Famille d'accueil - Unité de vie"]) {
+  border-color: green;
+}
+#dataResidence:has(option:checked[value="Hébergement associatif"]) {
+  border-color: blue;
+}

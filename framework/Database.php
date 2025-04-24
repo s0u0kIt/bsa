@@ -138,10 +138,20 @@ class Database
   public function prepare(string $sql, array $params = null): mixed {
     $stmt = $this->pdo->prepare($sql);
     if (is_null($params)) {
-      $stmt->execute();
+      if($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        return true;
+      }
     } else {
-      $stmt->execute($params);
+      if ($stmt->execute($params)) {
+        if ($stmt->rowCount() > 0) {
+          return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        return true;
+      }
     }
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    return false;
   }
 }

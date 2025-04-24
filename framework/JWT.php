@@ -1,4 +1,5 @@
 <?php
+
 namespace Framework;
 
 use RuntimeException;
@@ -95,7 +96,7 @@ class JWT
    * @param string|null $issuer The issuer of the token (default: server name).
    * @return string The generated JWT.
    */
-  public function encode(array $fields, string $issuer = null): string
+  public function encode(array $fields, string $issuer = null, int $timeout = null): string
   {
     if (!isset($issuer)) {
       $issuer = $_SERVER['SERVER_NAME'];
@@ -103,7 +104,7 @@ class JWT
 
     // Create the header and payload
     $header = $this->base64UrlEncode(json_encode(["alg" => $this->algorithm, "typ" => "JWT"]));
-    $values = array_merge(["iss" => $issuer, "exp" => time() + $this->timeout], $fields);
+    $values = array_merge(["iss" => $issuer, "exp" => time() + ($timeout ?? $this->timeout)], $fields);
     $payload = $this->base64UrlEncode(json_encode($values));
 
     // Generate the signature
@@ -120,8 +121,12 @@ class JWT
    * @param string $jwt The JSON Web Token to decode.
    * @return object|null Decoded payload object, or null if the JWT is invalid or expired.
    */
-  public function decode(string $jwt): ?object
+  public function decode(string $jwt = null): ?object
   {
+    if ($jwt === null) {
+      return null;
+    }
+    
     // Split the JWT into its components
     $parts = explode('.', $jwt, 3);
 
@@ -147,5 +152,43 @@ class JWT
 
     // Return the decoded payload
     return $decodedPayload;
+  }
+
+  /**
+   * Verifies if a JWT is correctly encoded with the defined key and algorithm.
+   *
+   * @param string $jwt The JSON Web Token to verify.
+   * @return bool True if the JWT is valid, False otherwise.
+   */
+  public function isValid(string $jwt): bool
+  {
+    // Split the JWT into its components
+    $parts = explode('.', $jwt, 3);
+
+    // A valid JWT must have exactly three parts: header, payload, and signature
+    if (count($parts) !== 3) {
+      return false;
+    }
+
+    [$header, $payload, $signature] = $parts;
+
+    // Recalculate the signature using the provided key and algorithm
+    $computedSignature = $this->base64UrlEncode(hash_hmac($this->algorithm, "$header.$payload", $this->key, true));
+
+    // Verify that the computed signature matches the signature in the token
+    if (!hash_equals($computedSignature, $signature)) {
+      return false;
+    }
+
+    // Decode the payload to verify its content
+    $decodedPayload = json_decode($this->base64UrlDecode($payload));
+
+    // Verify the payload is valid and the token has not expired
+    if (!$decodedPayload || !isset($decodedPayload->exp) || time() > $decodedPayload->exp) {
+      return false;
+    }
+
+    // If all checks pass, the JWT is valid
+    return true;
   }
 }
