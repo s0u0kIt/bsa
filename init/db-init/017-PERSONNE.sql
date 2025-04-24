@@ -1,0 +1,14 @@
+INSERT INTO `Personne` (`idPersonne`, `residence`, `nom`, `prenom`, `dateNaiss`, `dn`, `genre`, `activite`, `tel`, `email`, `typologie`, `nbEnfant`, `idIle`, `dateCreation`) VALUES
+	(1, 'A la rue', 'Michel', 'Sophie', '1987-09-30', '38266366', 'Femme', 'Mesure d\'aide SEFI', '0987654322', 'sophie.michel@example.com', 'Originaire des îles pour parcours de soins', 0, 82, '2024-07-01'),
+	(2, 'A la rue', 'Leroy', 'Julien', '1991-11-11', '48475980', 'Homme', 'CDD', '0123456782', 'julien.leroy@example.com', 'Fa\'amu', 1, 83, '2024-08-01'),
+	(3, 'Hébergement associatif', 'Roux', 'Isabelle', '1989-06-25', '75208600', 'Femme', 'Intérim', '0987654323', 'isabelle.roux@example.com', 'Recomposition familiale contraignante', 2, 84, '2024-09-01'),
+	(4, 'Famille d\'accueil - Unité de vie', 'Petit', 'Antoine', '1984-03-18', '01987666', 'Homme', 'Formation', '0123456783', 'antoine.petit@example.com', 'Troubles psychiques', 3, 85, '2024-10-01'),
+	(5, 'A la rue', 'Durand', 'Elise', '1993-07-07', '78768496', 'Femme', 'CDI', '0987654324', 'elise.durand@example.com', 'Personne âgée', 0, 86, '2024-11-01'),
+	(6, 'Hébergement associatif', 'Blanc', 'Thomas', '1981-01-29', '29273634', 'Homme', 'SITH', '0123456784', 'thomas.blanc@example.com', 'Violences intra-familiales', 12, 87, '2024-12-01'),
+	(7, 'Hébergement associatif', 'Garnier', 'Laura', '1986-05-05', '36775482', 'Femme', 'Extra', '0987654325', 'laura.garnier@example.com', 'Famille nombreuse, pressions et promiscuité', 2, 88, '2025-01-01'),
+	(8, 'Hébergement associatif', 'Girard', 'Camille', '1988-02-14', '37421641', 'Femme', 'Saisonnier', '0987654326', 'camille.girard@example.com', 'Sortant de prison', 0, 89, '2025-02-01'),
+	(9, 'A la rue', 'Bertrand', 'Louis', '1982-12-20', '25644688', 'Homme', 'Non-déclaré', '0123456786', 'louis.bertrand@example.com', 'Originaire des îles pour poursuite d\'études', 1, 90, '2025-02-01'),
+	(10, 'Famille d\'accueil - Unité de vie', 'Perrin', 'Alice', '1991-08-08', '93349807', 'Femme', 'Intérim', '0987654327', 'alice.perrin@example.com', 'Fa\'amu', 2, 91, '2025-02-01'),
+	(11, 'Famille d\'accueil - Unité de vie', 'Gauthier', 'Hugo', '1985-11-15', '78927434', 'Homme', 'CDI', '0123456787', 'hugo.gauthier@example.com', 'Recomposition familiale contraignante', 3, 92, '2025-02-01'),
+	(12, 'Hébergement associatif', 'Masson', 'Julie', '1987-04-04', '45063273', 'Femme', 'CDD', '0987654328', 'julie.masson@example.com', 'Troubles psychiques', 0, 93, '2025-02-01'),
+	(13, 'Famille d\'accueil - Unité de vie', 'Robin', 'Maxime', '1990-09-09', '53964820', 'Homme', 'Extra', '0123456789', 'maxime.robin@example.com', 'Personne âgée', 1, 94, '2025-02-01');

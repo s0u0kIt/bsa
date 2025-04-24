@@ -3,7 +3,9 @@
     "App\\": "/app/",
     "Framework\\": "/framework/",
     "Controllers\\": "/app/controllers/",
+    "Classes\\": "/app/classes/",
     "Middlewares\\": "/app/middlewares/",
-    "Libs\\": "/libs/"
+    "Libs\\": "/libs/",
+    "PHPMailer\\": "/libs/phpmailer/"
   }
 }

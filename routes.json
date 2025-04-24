@@ -1,57 +1,402 @@
 {
-  "default": {
+  "/": {
     "method": "GET",
     "uri": "/",
-    "redirect_uri": "/home"
+    "redirect_uri": "/accueil"
   },
 
-  "home": {
+  "/accueil/get": {
     "method": "GET",
-    "uri": "/home",
+    "uri": "/accueil",
     "controller": "HomeController",
     "action": "home"
   },
 
-  "signin": {
+  "/connexion/get": {
     "method": "GET",
-    "uri": "/signin",
+    "uri": "/connexion",
     "controller": "AuthController",
     "action": "getSigninForm"
   },
 
-  "signinVerify": {
+  "/authentification/post": {
     "method": "POST",
-    "uri": "/signin",
+    "uri": "/authentification",
     "controller": "AuthController",
     "action": "verifyCredentials"
   },
-
-  "signup": {
+  
+  "/deconnexion/get": {
     "method": "GET",
-    "uri": "/signup",
-    "controller": "AuthController",
-    "action": "getSignupForm"
-  },
-
-  "profile": {
-    "method": "GET",
-    "uri": "/profile",
-    "middlewares": [
-      "AuthMiddleware"
-    ]
-  },
-
-  "logout": {
-    "method": "GET",
-    "uri": "/logout",
+    "uri": "/deconnexion",
     "controller": "AuthController",
     "action": "logout"
   },
-
-  "AllHomelesses": {
+  "/mot-de-passe-oublie/get": {
     "method": "GET",
-    "uri": "/homeless",
-    "controller": "HomelessController",
+    "uri": "/mot-de-passe-oublie",
+    "controller": "AuthController",
+    "action": "getForgotPasswordForm"
+  },
+  "/mot-de-passe-oublie/post": {
+    "method": "POST",
+    "uri": "/mot-de-passe-oublie",
+    "controller": "AuthController",
+    "action": "sendResetPasswordEmail"
+  },
+  "/reinitialisation/get": {
+    "method": "GET",
+    "uri": "/reinitialisation",
+    "controller": "AuthController",
+    "action": "getResetPasswordForm"
+  },
+  "/reinitialisation/post": {
+    "method": "POST",
+    "uri": "/reinitialisation",
+    "controller": "AuthController",
+    "action": "resetPassword"
+  },
+
+
+
+  
+
+  "/app/get": {
+    "method": "GET",
+    "uri": "/app",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "AppController",
+    "action": "app"
+  },
+
+  "/app/profil/get": {
+    "method": "GET",
+    "middlewares": ["AuthMiddleware"],
+    "uri": "/app/profil"
+  },
+
+  "/app/accueil/get": {
+    "method": "GET",
+    "uri": "/app/home",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "HomeController",
+    "action": "mapBSA"
+  },
+
+  "/app/dossiers/get": {
+    "method": "GET",
+    "uri": "/app/dossiers",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "CaseController",
     "action": "getAll"
+  },
+
+  "/app/dossier/post": {
+    "method": "POST",
+    "uri": "/app/dossier",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "CaseController",
+    "action": "addOne"
+  },
+
+  "/app/agents/get": {
+    "method": "GET",
+    "uri": "/app/agents",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "AgentsController",
+    "action": "getAll"
+  },
+
+  "/app/agent/post": {
+    "method": "POST",
+    "uri": "/app/agent",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "AgentsController",
+    "action": "addOne"
+  },
+
+  "/app/carte/get": {
+    "method": "GET",
+    "uri": "/app/carte",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MapController",
+    "action": "getMap"
+  },
+
+  "/app/statistiques/get": {
+    "method": "GET",
+    "uri": "/app/statistiques",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "StatsController",
+    "action": "getStats"
+  },
+
+  "/app/faq/get": {
+    "method": "GET",
+    "uri": "/app/faq",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "QNAController",
+    "action": "faq"
+  },
+  "/app/policies/ml/get": {
+    "method": "GET",
+    "uri": "/app/policies/legal-mentions",
+    "controller": "PoliciesController",
+    "action": "policiesLm"
+  },
+  "/app/policies/pc/get": {
+    "method": "GET",
+    "uri": "/app/policies/privacy-policy",
+    "controller": "PoliciesController",
+    "action": "policiesPp"
+  },
+  "/app/policies/cgu/get": {
+    "method": "GET",
+    "uri": "/app/policies/general-conditions",
+    "controller": "PoliciesController",
+    "action": "policiesGc"
+  },
+  "/app/zones/get": {
+    "method": "GET",
+    "uri": "/app/zones",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ZonesController",
+    "action": "getAll"
+  },
+
+  
+
+
+  
+  "api/agents/get": {
+    "method": "GET",
+    "uri": "/api/agents",
+    "controller": "ApiController",
+    "action": "getAllAgent"
+  },
+
+  "api/agent/get": {
+    "method": "GET",
+    "uri": "/api/agent",
+    "controller": "ApiController",
+    "action": "getOneAgent"
+  },
+
+  "api/agent/post": {
+    "method": "POST",
+    "uri": "/api/agent",
+    "controller": "ApiController",
+    "action": "addOneAgent"
+  },
+
+  "api/agent/put": {
+    "method": "PUT",
+    "uri": "/api/agent",
+    "controller": "ApiController",
+    "action": "updateOneAgent"
+  },
+
+  "api/agent/delete": {
+    "method": "DELETE",
+    "uri": "/api/agent",
+    "controller": "ApiController",
+    "action": "deleteOneAgent"
+  },
+
+  "api/zones/get": {
+    "method": "GET",
+    "uri": "/api/zones",
+    "controller": "ApiController",
+    "action": "getAllZone"
+  },
+
+  "api/zones/active": {
+    "method": "GET",
+    "uri": "/api/zones/active",
+    "controller": "ApiController",
+    "action": "getAllActiveZone"
+  },
+
+  "api/zone/get": {
+    "method": "GET",
+    "uri": "/api/zone",
+    "controller": "ApiController",
+    "action": "getOneZone"
+  },
+
+  "api/zone/post": {
+    "method": "POST",
+    "uri": "/api/zone",
+    "controller": "ApiController",
+    "action": "addOneZone"
+  },
+
+  "api/zone/delete": {
+    "method": "DELETE",
+    "uri": "/api/zone",
+    "controller": "ApiController",
+    "action": "deleteOneZone"
+  },
+
+  "api/zone/active/put": {
+    "method": "PUT",
+    "uri": "/api/zone/active",
+    "controller": "ApiController",
+    "action": "toggleOneZone"
+  },
+
+  "api/dossiers/get": {
+    "method": "GET",
+    "uri": "/api/dossiers",
+    "controller": "ApiController",
+    "action": "getAllCase"
+  },
+  
+
+  "api/dossier/post": {
+    "method": "POST",
+    "uri": "/api/dossier",
+    "controller": "ApiController",
+    "action": "addOneCase"
+  },
+
+  "api/dossier/update": {
+    "method": "PUT",
+    "uri": "/api/dossier",
+    "controller": "ApiController",
+    "action": "updateOneCase"
+  },
+
+  "api/dossier/delete": {
+    "method": "DELETE",
+    "uri": "/api/dossier",
+    "controller": "ApiController",
+    "action": "deleteOneCase"
+  },
+
+  "api/releve/add": {
+    "method": "POST",
+    "uri": "/api/releve",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "addOneReport"
+  },
+
+  "api/releves/all": {
+    "method": "GET",
+    "uri": "/api/releves",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "getAllReport"
+  },
+
+  "api/releve/delete": {
+    "method": "DELETE",
+    "uri": "/api/releve",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "deleteOneReport"
+  },
+
+  "api/comptage/add": {
+    "method": "POST",
+    "uri": "/api/comptage",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "addOneCount"
+  },
+  
+  "api/statistiques/repartition-genre": {
+    "method": "GET",
+    "uri": "/api/statistiques/repartition-genre",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "getGenderDistribution"
+  },
+
+  "api/statistiques/progression-6-mois": {
+    "method": "GET",
+    "uri": "/api/statistiques/progression-6-mois",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "getSixMonthsProgression"
+  },
+
+  "api/statistiques/repartition-typologie": {
+    "method": "GET",
+    "uri": "/api/statistiques/repartition-typologie",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "getTypologyDistribution"
+  },
+
+  "api/statistiques/repartition-population": {
+    "method": "GET",
+    "uri": "/api/statistiques/repartition-population",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "ApiController",
+    "action": "getPopulationDistribution"
+  },
+  
+  
+
+  
+  
+  
+  
+  "mobile/": {
+    "method": "GET",
+    "uri": "/mobile/",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MobileController",
+    "action": "app"
+  },
+
+  "mobile": {
+    "method": "GET",
+    "uri": "/mobile/dossier/formulaire",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MobileController",
+    "action": "getCaseForm"
+  },
+
+  "mobile/dossiers/all": {
+    "method": "GET",
+    "uri": "/mobile/dossiers",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MobileController",
+    "action": "displayAllCases"
+  },
+
+  "mobile/dossier/form": {
+    "method": "GET",
+    "uri": "/mobile/dossier/formulaire",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MobileController",
+    "action": "getCaseForm"
+  },
+
+  "mobile/dossier/one": {
+    "method": "GET",
+    "uri": "/mobile/dossier/",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MobileController",
+    "action": "displayOneCase"
+  },
+
+  "mobile/comptage/form": {
+    "method": "GET",
+    "uri": "/mobile/comptage",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MobileController",
+    "action": "getCountForm"
+  },
+
+  "mobile/releves/get": {
+    "method": "GET",
+    "uri": "/mobile/releves",
+    "middlewares": ["AuthMiddleware"],
+    "controller": "MobileController",
+    "action": "displayAllReports"
   }
 }

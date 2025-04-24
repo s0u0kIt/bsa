@@ -12,7 +12,11 @@ class HomeController
   public function home(): void
   {
     $smarty = SmartyWrapper::getSmarty();
-    $smarty->assign('name', 'User');
+    $smarty->display('home.tpl');
+  }
+  public function mapBSA(): void
+  {
+    $smarty = SmartyWrapper::getSmarty();
     $smarty->display('home.tpl');
   }
 }

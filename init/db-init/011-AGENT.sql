@@ -1,0 +1,1 @@
+INSERT INTO `Agent` (`idAgent`, `nom`, `prenom`, `login`, `pwd`, `role`) VALUES (1, 'Admin', 'Admin', 'admin', '$argon2i$v=19$m=16,t=2,p=1$RTROT0RQWE1qWkJJTUJUVQ$jPZnjyWUiakAEcuTYI4yqA', 'Admin');

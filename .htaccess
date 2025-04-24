@@ -1,18 +1,28 @@
 <IfModule mod_rewrite.c>
-  # Activate rewrite engine
+  # Activer le moteur de réécriture
   RewriteEngine On
 
-  # Ignore static resources (CSS, JS, images, fonts, etc.)
-  RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt|svg|woff|ttf|eot)$ [NC]
+  # 1) Ignorer la réécriture si l'URL demandée est une ressource statique
+  RewriteCond %{REQUEST_URI} \.(css|gif|ico|jpg|js|png|swf|txt|svg|woff|ttf|eot)$ [NC]
+  RewriteRule ^ - [L]
 
-  # Ignore requests for the public/ directory
-  RewriteCond %{REQUEST_URI} !^/public/ [NC]
+  # 2) Ignorer la réécriture si l'URL demandée est le répertoire /public
+  RewriteCond %{REQUEST_URI} ^/public/ [NC]
+  RewriteRule ^ - [L]
 
-  # Redirect everything to index.php, except static resources and the public/ directory
+  # 3) Réécrire l'URL en /mobile/index.php si l'URL demandée commence par /mobile/
+  RewriteCond %{REQUEST_URI} ^/mobile/ [NC]
+  RewriteCond %{REQUEST_URI} !^/mobile/index\.php [NC]
+  RewriteCond %{REQUEST_URI} !^/mobile/manifest.json [NC]
+  RewriteRule ^mobile/(.*)$ /mobile/index.php [L]
+
+  # 4) Réécrire l'URL en index.php pour toutes les autres requêtes sauf les ressources statiques et /public/
   RewriteCond %{REQUEST_URI} !^/index\.php [NC]
+  RewriteCond %{REQUEST_URI} !^/mobile/ [NC]
+  RewriteCond %{REQUEST_URI} !^/public/ [NC]
   RewriteRule ^ index.php [L]
 
-  # Remove "index.php" from URLs
+  # 5) Retirer "index.php" de l'URL
   RewriteCond %{THE_REQUEST} /index\.php [NC]
   RewriteRule ^index\.php(.*)$ /$1 [L,R=301]
 </IfModule>
