@@ -1,0 +1,9 @@
+{
+  "psr4": {
+    "App\\": "/app/",
+    "Framework\\": "/framework/",
+    "Controllers\\": "/app/controllers/",
+    "Middlewares\\": "/app/middlewares/",
+    "Libs\\": "/libs/"
+  }
+}

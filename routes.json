@@ -1,0 +1,57 @@
+{
+  "default": {
+    "method": "GET",
+    "uri": "/",
+    "redirect_uri": "/home"
+  },
+
+  "home": {
+    "method": "GET",
+    "uri": "/home",
+    "controller": "HomeController",
+    "action": "home"
+  },
+
+  "signin": {
+    "method": "GET",
+    "uri": "/signin",
+    "controller": "AuthController",
+    "action": "getSigninForm"
+  },
+
+  "signinVerify": {
+    "method": "POST",
+    "uri": "/signin",
+    "controller": "AuthController",
+    "action": "verifyCredentials"
+  },
+
+  "signup": {
+    "method": "GET",
+    "uri": "/signup",
+    "controller": "AuthController",
+    "action": "getSignupForm"
+  },
+
+  "profile": {
+    "method": "GET",
+    "uri": "/profile",
+    "middlewares": [
+      "AuthMiddleware"
+    ]
+  },
+
+  "logout": {
+    "method": "GET",
+    "uri": "/logout",
+    "controller": "AuthController",
+    "action": "logout"
+  },
+
+  "AllHomelesses": {
+    "method": "GET",
+    "uri": "/homeless",
+    "controller": "HomelessController",
+    "action": "getAll"
+  }
+}
